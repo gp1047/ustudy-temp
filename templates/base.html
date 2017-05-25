@@ -1,0 +1,26 @@
+{% load static %}
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <title>uStudy</title>
+        <link href="https://fonts.googleapis.com/css?family=Metamorphous" rel="stylesheet">
+        <link rel='stylesheet' href="{% static 'css/style.css' %}">
+        
+    </head>
+    
+    
+    <body>
+        <div class='container'>
+            <nav>
+                <a href="{% url 'home' %}">uStudy</a> |
+                <a href="{% url 'flashcards:deckList' %}">Decks</a> |
+                <a href="{% url 'flashcards:addCard' %}">Add Card</a> |
+                <a href="{% url 'home' %}">About</a> |
+                <a href="{% url 'home' %}">Contact</a>
+            </nav>
+            {% block content %}
+            {% endblock %}
+        </div>
+    </body>
+</html>

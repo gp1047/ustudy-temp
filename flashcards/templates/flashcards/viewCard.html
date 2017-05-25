@@ -1,0 +1,59 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <a class='centered-btn' href='{% url "flashcards:viewCard" deck.id %}' style='margin-top: 10px'>{{ deck }}</a>
+    
+    {% if card %}
+        <div class='notecard'>
+            <div class='notecard-nav text-centered'>
+                {% if card.has_prev_card %}<a href='{% url "flashcards:viewCard" deck.id %}?card={{card.get_prev_card.id}}'>Prev</a>{% endif %}
+                {% if card.has_prev_card and card.has_next_card %}<a href='{% url "flashcards:viewCard" deck.id %}?card={{deck.get_random_card.id}}'>Random</a>{% endif %}
+                {% if card.has_next_card %}<a href='{% url "flashcards:viewCard" deck.id %}?card={{card.get_next_card.id}}'>Next</a>{% endif %}
+            </div>
+            <div class="notecard-front">
+                <p class='text-centered'>Front</p>
+                <div class='notecard-data'>
+                    <p class='text-centered'>{{card.front}}</p>
+                </div>
+            </div>
+            <div class="notecard-back">
+                <p class='text-centered'>Back</p>
+                <div class='notecard-data'>
+                    <p class='text-centered'>{{card.back}}</p>
+                </div>
+            </div>
+        </div>
+         <a class='danger centered-btn' href='{% url "flashcards:editCard" card.id %}' style='margin-top: 10px'>Edit This Card</a>
+         <script type='text/javascript'>
+        var front = document.querySelector('.notecard-front');
+        var back = document.querySelector('.notecard-back');
+        var card = document.querySelector('.notecard');
+        back.style.display = 'none';
+        
+        front.onclick = function(){
+            flipCard();
+        }
+        
+        back.onclick = function(){
+            flipCard();
+        }
+        
+        function flipCard(){
+            if (front.style.display === 'none'){
+                front.style.display = 'block';
+            } else {
+                front.style.display = 'none';
+            }
+            
+            if (back.style.display === 'none'){
+                back.style.display = 'block';
+            } else {
+                back.style.display = 'none';
+            }
+        }
+    </script>
+    {% else %}
+        <div class="text-centered">No Cards Available! Have you tried to add one?</div>
+    {% endif %}
+
+{% endblock %}

@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class='landing-banner'>
+        <h1 class='text-centered'>Flashcards</h1>
+        <hr>
+        <h4 class='text-centered'>Choose a set of flashcards from below!</h4>
+    </div>
+    
+    {% if decks %}
+        {% for deck in decks %}
+            <a class='centered-btn' href='{% url "flashcards:viewCard" deck.id %}'>{{ deck }}</a><br>
+        {% endfor %}
+    {% else %}
+        <p class='text-centered'>Oh No! There are no flashcard decks available right now, try again later!</p>
+    {% endif %}
+{% endblock %}

@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class='landing-banner'>
+        <h1 class='text-centered'>uStudy</h1>
+        <hr>
+        <h4 class='text-centered'>Harness the Power of U!</h4>
+    </div>
+    
+    <a class='centered-btn' href='{% url "flashcards:deckList" %}'>Get Started</a>
+    
+{% endblock %}
